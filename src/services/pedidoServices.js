@@ -2,6 +2,7 @@ const pedidos = []
 let idAtual = 1
 
 class PedidoService {
+    //Verificações centralizadas para reaproveitamento de código----
     verificacoes(dados) {
         const { cliente, tipo, valor, prioridade } = dados
         if (!cliente || !tipo || !valor || !prioridade) {
@@ -25,13 +26,12 @@ class PedidoService {
         }
         else { return true }
     }
+    //-----------------------------
+
+    //Criação de pedido------------------------------
     criar(dados) {
         const { cliente, tipo, valor, prioridade } = dados
 
-        //Verificar se tipo é reconhecido -----------------------
-
-
-        //--------------------------------------------------------
         if (this.verificacoes(dados)) {
             const novoPedido = {
                 id: idAtual,
@@ -43,25 +43,23 @@ class PedidoService {
             }
 
             idAtual = idAtual + 1
-
             pedidos.push(novoPedido)
             return novoPedido
         }
-
-
     }
+    //------------------------------------------------------
 
+    //Atualização de status---------------------------------
     atualizar(dados, id) {
         const { status } = dados
 
         const pedidoInformado = pedidos.find(item => item.id == id)
-
         if (!pedidoInformado) {
             throw { status: 404, erro: `Não existe pedido com o ID informado` }
         }
 
+        //Verificando se status informado é reconhecido-----
         const statusReconhecidos = ['recebido', 'em_preparacao', 'enviado', 'entregue', 'cancelado']
-
         function verificarStatusReconhecido() {
             let reconhecido = false
             statusReconhecidos.forEach((item) => {
@@ -75,17 +73,22 @@ class PedidoService {
         if(!verificarStatusReconhecido()){
             throw { status: 400, mensagem: `Insira um status reconhecido: ${statusReconhecidos}`}
         }
+        //--------------------------------------------------
         else{
             pedidoInformado.status = status
             return pedidoInformado
         }
 
     }
+    //-------------------------------------------
 
+    //Exibição de todos os pedidos----------------
     listar(){
         return pedidos
     }
+    //--------------------------------------------
 
+    //Exibição de um pedido específico (por ID)---
     buscarPorId(id){
         const pedidoInformado = pedidos.find(item => item.id == id)
 
@@ -96,4 +99,5 @@ class PedidoService {
             return pedidoInformado
         }
     }
+    //----------------------------------------------
 }
