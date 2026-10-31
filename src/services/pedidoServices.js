@@ -1,7 +1,7 @@
 const pedidos = []
 let idAtual = 1
 
-class PedidoService {
+class PedidoServices {
     //Verificações centralizadas para reaproveitamento de código----
     verificacoes(dados) {
         const { cliente, tipo, valor, prioridade } = dados
@@ -101,3 +101,5 @@ class PedidoService {
     }
     //----------------------------------------------
 }
+
+export default new PedidoServices()
