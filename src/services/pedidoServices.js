@@ -23,43 +23,62 @@ class PedidoService {
         else if (prioridade != "baixa" && prioridade != "média" && prioridade != "alta") {
             throw { status: 400, mensagem: "A prioridade deve receber um dos valores: 'baixa', 'media' ou 'alta'" }
         }
-        else {return true}
+        else { return true }
     }
     criar(dados) {
         const { cliente, tipo, valor, prioridade } = dados
 
         //Verificar se tipo é reconhecido -----------------------
 
-        /*const tiposReconhecidos = ['recebido', 'em_preparacao', 'enviado', 'entregue', 'cancelado']
 
-        function verificarTipoReconhecido(){
+        //--------------------------------------------------------
+        if (this.verificacoes(dados)) {
+            const novoPedido = {
+                id: idAtual,
+                cliente: cliente,
+                tipo: tipo,
+                valor: valor,
+                prioridade: prioridade,
+                status: "recebido"
+            }
+
+            idAtual = idAtual + 1
+
+            pedidos.push(novoPedido)
+            return novoPedido
+        }
+
+
+    }
+
+    atualizar(dados, id) {
+        const { status } = dados
+
+        const pedidoInformado = pedidos.find(item => item.id == id)
+
+        if (!pedidoInformado) {
+            throw { status: 404, erro: `Não existe pedido com o ID informado` }
+        }
+
+        const statusReconhecidos = ['recebido', 'em_preparacao', 'enviado', 'entregue', 'cancelado']
+
+        function verificarStatusReconhecido() {
             let reconhecido = false
-            tiposReconhecidos.forEach((item) => {
-                if(tipo == item) {
+            statusReconhecidos.forEach((item) => {
+                if (status == item) {
                     reconhecido = true
                 }
             })
             return reconhecido
-        }*/
-        //--------------------------------------------------------
-        if(this.verificacoes(dados)){
-             const novoPedido = {
-            id: idAtual,
-            cliente: cliente,
-            tipo: tipo,
-            valor: valor,
-            prioridade: prioridade,
-            status: "recebido"
         }
 
-        idAtual = idAtual + 1
-
-        pedidos.push(novoPedido)
-        return novoPedido
+        if(!verificarStatusReconhecido()){
+            throw { status: 400, mensagem: `Insira um status reconhecido: ${statusReconhecidos}`}
+        }
+        else{
+            pedidoInformado.status = status
+            return pedidoInformado
         }
 
-       
     }
-
-
 }
