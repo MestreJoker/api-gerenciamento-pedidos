@@ -81,4 +81,19 @@ class PedidoService {
         }
 
     }
+
+    listar(){
+        return pedidos
+    }
+
+    buscarPorId(id){
+        const pedidoInformado = pedidos.find(item => item.id == id)
+
+        if(!pedidoInformado){
+            throw {status: 404, erro: `Não existe pedido com o ID informado`}
+        }
+        else{
+            return pedidoInformado
+        }
+    }
 }
