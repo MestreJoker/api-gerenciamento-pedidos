@@ -8,6 +8,6 @@ router.get('/pedidos/:id', pedidoController.buscarPorId)
 
 router.post('/pedidos', pedidoController.criar)
 
-router.patch('/pedidos/:id', pedidoController.atualizar)
+router.patch('/pedidos/:id/status', pedidoController.atualizar)
 
 export default router
