@@ -55,7 +55,7 @@ class PedidoServices {
 
         const pedidoInformado = pedidos.find(item => item.id == id)
         if (!pedidoInformado) {
-            throw { status: 404, erro: `Não existe pedido com o ID informado` }
+            throw { status: 404, mensagem: `Não existe pedido com o ID informado` }
         }
 
         //Verificando se status informado é reconhecido-----
@@ -93,7 +93,7 @@ class PedidoServices {
         const pedidoInformado = pedidos.find(item => item.id == id)
 
         if(!pedidoInformado){
-            throw {status: 404, erro: `Não existe pedido com o ID informado`}
+            throw {status: 404, mensagem: `Não existe pedido com o ID informado`}
         }
         else{
             return pedidoInformado
