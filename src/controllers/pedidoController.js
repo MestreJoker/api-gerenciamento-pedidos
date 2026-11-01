@@ -1,4 +1,4 @@
-import pedidoServices from '../services/pedidoServices'
+import pedidoServices from '../services/pedidoServices.js'
 
 class PedidoController {
     criar(req, res) {

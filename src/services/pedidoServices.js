@@ -21,7 +21,7 @@ class PedidoServices {
             throw { status: 400, mensagem: "Valor deve ser um número maior do que 0" }
         }
 
-        else if (prioridade != "baixa" && prioridade != "média" && prioridade != "alta") {
+        else if (prioridade != "baixa" && prioridade != "media" && prioridade != "alta") {
             throw { status: 400, mensagem: "A prioridade deve receber um dos valores: 'baixa', 'media' ou 'alta'" }
         }
         else { return true }
