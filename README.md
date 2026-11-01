@@ -1,3 +1,5 @@
+Nome: Gabriel dos Santos Gomes - RGM: 44112998
+
 # API de Gerenciamento de Pedidos - TASIII
 
 API REST desenvolvida em Node.js com Express para o gerenciamento de pedidos de uma pequena loja, estruturada com base em uma arquitetura em camadas (MVC). Projeto prático avaliativo da disciplina de Tópicos Avançados em Sistemas de Informação II.
